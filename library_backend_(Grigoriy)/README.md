@@ -13,3 +13,4 @@ api/books/<int:num>/ -возвращает все книги для указан
 БД пока +- пустая если что. Думаю, будем заполнять как сделаем норм интерфейс для этого, заодно и протестим. Я конечно могу через админку django сделать но это не так удобно.
 
 :)
+mamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamama
