@@ -8,6 +8,10 @@ class Author(models.Model):
         return self.name
 
 
+class Piece(models.Model):
+    name = models.CharField(max_length=100)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+
 class TextBook(models.Model):
     CLASS_NUMBER_CHOICES = [
         (7, 7),
@@ -18,10 +22,16 @@ class TextBook(models.Model):
     ]
     name = models.CharField('Название', max_length=100)
     class_number = models.IntegerField('В каком классе выдаются', choices=CLASS_NUMBER_CHOICES)
-    author = models.ManyToManyField(Author, related_name='author')
+    authors = models.ManyToManyField(Author, related_name='author')
 
     def __str__(self):
         return f'{self.name} {self.class_number}'
+
+
+class JustBook(models.Model):
+    name = models.CharField(max_length=100)
+    authors = models.ManyToManyField(Author, related_name='author')
+    pieces = models.ManyToManyField(Piece, related_name='piece')
 
 
 class Student(models.Model):
