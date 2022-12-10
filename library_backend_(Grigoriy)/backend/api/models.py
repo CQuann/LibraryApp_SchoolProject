@@ -74,7 +74,7 @@ class Student(models.Model):
     surname = models.CharField('Фамилия', max_length=100, default='')
     name = models.CharField('Имя', max_length=100, default='')
     patronymic = models.CharField('Отчество', max_length=100, default='')
-    text_books = models.ManyToManyField(TextBook, default=None)
+    text_books = models.ManyToManyField(TextBook, default=None )
     class_number = models.PositiveSmallIntegerField(choices=CLASS_NUMBER_CHOICES)
     class_index = models.PositiveSmallIntegerField(choices=CLASS_INDEX_CHOICES)
 
