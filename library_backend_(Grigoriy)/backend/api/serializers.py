@@ -1,11 +1,15 @@
 from rest_framework import serializers
-from .models import Student
+from .models import Student, TextBook
+
+
+class TextBooksSerizlizer(serializers.ModelSerializer):
+    class Meta:
+        model = TextBook
+        fields = '__all__'
 
 
 class StudentListSerializer(serializers.ModelSerializer):
-    text_books = serializers.SlugRelatedField(slug_field='name', many=True, read_only=True)
+
     class Meta:
         model = Student
-        exclude = ('id',)
-
-
+        exclude = ('id', 'text_books')
