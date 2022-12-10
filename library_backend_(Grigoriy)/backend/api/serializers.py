@@ -3,6 +3,9 @@ from .models import Student
 
 
 class StudentListSerializer(serializers.ModelSerializer):
+    text_books = serializers.SlugRelatedField(slug_field='name', many=True, read_only=True)
     class Meta:
         model = Student
-        fields = '__all__'
+        exclude = ('id',)
+
+

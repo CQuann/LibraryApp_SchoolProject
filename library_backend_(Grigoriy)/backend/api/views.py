@@ -4,9 +4,8 @@ from .models import Student
 from .serializers import StudentListSerializer
 
 
-class StudentsListView(APIView):
+class StudentsListAPIView(APIView):
     def get(self, request, c_num, c_index):
         students = Student.objects.filter(class_number=c_num, class_index=c_index)
-        serializer = StudentListSerializer(many=True)
+        serializer = StudentListSerializer(students, many=True)
         return Response(serializer.data)
-
