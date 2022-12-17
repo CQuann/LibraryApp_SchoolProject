@@ -9,6 +9,7 @@ CLASS_NUMBER_CHOICES = [
         (11, 11),
     ]
 
+
 class Author(models.Model):
     """Авторы"""
     name = models.CharField(max_length=100)
@@ -19,6 +20,20 @@ class Author(models.Model):
     class Meta:
         verbose_name = 'Автор'
         verbose_name_plural = 'Авторы'
+
+
+class TextBook(models.Model):
+    """Учебники"""
+    name = models.CharField('Название', max_length=100)
+    class_number = models.IntegerField('В каком классе выдаются', choices=CLASS_NUMBER_CHOICES)
+    authors = models.ManyToManyField(Author, blank=True)
+
+    def __str__(self):
+        return f'{self.name} {self.class_number}'
+
+    class Meta:
+        verbose_name = 'Учебник'
+        verbose_name_plural = 'Учебники'
 
 
 class Piece(models.Model):
@@ -34,25 +49,11 @@ class Piece(models.Model):
         verbose_name_plural = 'Произведения'
 
 
-class TextBook(models.Model):
-    """Учебники"""
-    name = models.CharField('Название', max_length=100)
-    class_number = models.IntegerField('В каком классе выдаются', choices=CLASS_NUMBER_CHOICES)
-    authors = models.ManyToManyField(Author, related_name='author')
-
-    def __str__(self):
-        return f'{self.name} {self.class_number}'
-
-    class Meta:
-        verbose_name = 'Учебник'
-        verbose_name_plural = 'Учебники'
-
-
 class JustBook(models.Model):
     """Собрания произведений"""
     name = models.CharField(max_length=100)
-    authors = models.ManyToManyField(Author, related_name='just_author')
-    pieces = models.ManyToManyField(Piece, related_name='piece')
+    authors = models.ManyToManyField(Author, related_name='just_book')
+    pieces = models.ManyToManyField(Piece, related_name='book')
 
     def __str__(self):
         return self.name
@@ -74,7 +75,7 @@ class Student(models.Model):
     surname = models.CharField('Фамилия', max_length=100, default='')
     name = models.CharField('Имя', max_length=100, default='')
     patronymic = models.CharField('Отчество', max_length=100, default='')
-    text_books = models.ManyToManyField(TextBook, default=None )
+    text_books = models.ManyToManyField(TextBook, related_name='student', blank=True)
     class_number = models.PositiveSmallIntegerField(choices=CLASS_NUMBER_CHOICES)
     class_index = models.PositiveSmallIntegerField(choices=CLASS_INDEX_CHOICES)
 
