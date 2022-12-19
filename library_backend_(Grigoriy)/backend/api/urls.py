@@ -1,9 +1,21 @@
 from django.urls import path
 from .views import *
 
+from rest_framework import routers
+
+router = routers.SimpleRouter()
+router.register(r'students/all', StudentViewSet)
+router.register(r'authors', AuthorsViewSet)
+router.register(r'textbooks', TextBookViewSet)
+urlpatterns = router.urls
+
 
 urlpatterns = [
-    path('api/students/<int:class_num>/<int:class_index>/', get_students),
-    path('api/student/<int:student_id>/', get_student_books),
-    path('api/books/<int:num>/', get_books),
+    path('students/<int:c_num>/<int:c_index>/', StudentsFilter.as_view()),
+    path('students/<int:pk>/', StudentDetailView.as_view())
 ]
+
+
+
+
+

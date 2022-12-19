@@ -1,21 +1,32 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SlugRelatedField
+from .models import Student, TextBook, Author
 
-from .models import Book, Student, Journal
 
+class AuthorSerializer(ModelSerializer):
 
-class BookSerializer(ModelSerializer):
     class Meta:
-        model = Book
+        model = Author
         fields = '__all__'
 
 
-class StudentSerializer(ModelSerializer):
+class TextBookSerializer(ModelSerializer):
+    authors = AuthorSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = TextBook
+        fields = '__all__'
+
+
+class StudentListSerializer(ModelSerializer):
+    class Meta:
+        model = Student
+        exclude = ['text_books']
+
+
+class StudentDetailSerializer(ModelSerializer):
+    text_books = TextBookSerializer(many=True, read_only=True)
+
     class Meta:
         model = Student
         fields = '__all__'
 
-
-class JournalSerializer(ModelSerializer):
-    class Meta:
-        model = Journal
-        fields = ['book']
