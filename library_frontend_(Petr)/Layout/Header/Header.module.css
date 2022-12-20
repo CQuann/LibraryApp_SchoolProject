@@ -1,0 +1,27 @@
+.header {
+	display: grid;
+	background-color: var(--primary);
+	color: #fff;
+	min-height: 75px;
+	padding: 25px 30px;
+	grid-template-columns: auto 1fr;
+	width: 100%;
+}
+
+.logo {
+	border-radius: 100%;
+	border: 2px #fff solid;
+	width: 80px;
+	height: 80px;
+}
+
+.icon {
+	margin: -40px -10px;
+	padding: 30px;
+}
+
+.name {
+	font-size: 50px;
+	text-align: center;
+	padding-right: 80px;
+}
