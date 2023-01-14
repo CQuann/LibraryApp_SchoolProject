@@ -26,7 +26,8 @@ class TextBook(models.Model):
     """Учебники"""
     name = models.CharField('Название', max_length=100)
     class_number = models.IntegerField('В каком классе выдаются', choices=CLASS_NUMBER_CHOICES)
-    authors = models.ManyToManyField(Author, blank=True)
+    authors = models.ManyToManyField(Author, related_name='text_books')
+    release_year = models.DateField(blank=True, default=None)
 
     def __str__(self):
         return f'{self.name} {self.class_number}'
@@ -72,10 +73,10 @@ class Student(models.Model):
         (4, 4),
         (5, 5),
     ]
-    surname = models.CharField('Фамилия', max_length=100, default='')
-    name = models.CharField('Имя', max_length=100, default='')
-    patronymic = models.CharField('Отчество', max_length=100, default='')
-    text_books = models.ManyToManyField(TextBook, related_name='student', blank=True)
+    surname = models.CharField('Фамилия', max_length=100)
+    name = models.CharField('Имя', max_length=100)
+    patronymic = models.CharField('Отчество', max_length=100)
+    text_books = models.ManyToManyField(TextBook, blank=True, default=None)
     class_number = models.PositiveSmallIntegerField(choices=CLASS_NUMBER_CHOICES)
     class_index = models.PositiveSmallIntegerField(choices=CLASS_INDEX_CHOICES)
 
@@ -85,3 +86,11 @@ class Student(models.Model):
     class Meta:
         verbose_name = 'Ученик'
         verbose_name_plural = 'Ученики'
+
+
+class Paralels(models.Model):
+    main_class = models.PositiveSmallIntegerField(choices=CLASS_NUMBER_CHOICES)
+    paralel_numbers = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return f'{self.main_class}-{self.paralel_numbers}'
