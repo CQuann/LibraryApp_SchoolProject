@@ -16,11 +16,6 @@ class TextBookSerializer(ModelSerializer):
         model = TextBook
         fields = '__all__'
 
-    def update(self, instance, validated_data):
-        for author in validated_data.get('authors'):
-            instance.authors += author
-        instance.save()
-        return instance
 
 #не воркает
 class StudentListSerializer(ModelSerializer):
