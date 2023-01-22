@@ -26,8 +26,8 @@ class TextBook(models.Model):
     """Учебники"""
     name = models.CharField('Название', max_length=100)
     class_number = models.IntegerField('В каком классе выдаются', choices=CLASS_NUMBER_CHOICES)
-    authors = models.ManyToManyField(Author, related_name='text_books')
-    release_year = models.DateField(blank=True, default=None)
+    authors = models.ManyToManyField(Author)
+    release_year = models.DateField(blank=True)
 
     def __str__(self):
         return f'{self.name} {self.class_number}'
@@ -53,8 +53,8 @@ class Piece(models.Model):
 class JustBook(models.Model):
     """Собрания произведений"""
     name = models.CharField(max_length=100)
-    authors = models.ManyToManyField(Author, related_name='just_book')
-    pieces = models.ManyToManyField(Piece, related_name='book')
+    authors = models.ManyToManyField(Author)
+    pieces = models.ManyToManyField(Piece)
 
     def __str__(self):
         return self.name
@@ -77,6 +77,7 @@ class Student(models.Model):
     name = models.CharField('Имя', max_length=100)
     patronymic = models.CharField('Отчество', max_length=100)
     text_books = models.ManyToManyField(TextBook, blank=True, default=None)
+    just_books = models.ManyToManyField(JustBook, blank=True, default=None)
     class_number = models.PositiveSmallIntegerField(choices=CLASS_NUMBER_CHOICES)
     class_index = models.PositiveSmallIntegerField(choices=CLASS_INDEX_CHOICES)
 
