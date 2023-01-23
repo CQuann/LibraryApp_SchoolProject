@@ -16,5 +16,5 @@ router.register(r'authors', AuthorsViewSet)
 router.register(r'textbooks', TextBookViewSet)
 router.register(r'pieces', PieceViewSet)
 router.register(r'justbooks', JustBookViewSet)
-router.register(r'parallels', ParalelViewSet)
+router.register(r'parallels', ParallelViewSet)
 urlpatterns += router.urls

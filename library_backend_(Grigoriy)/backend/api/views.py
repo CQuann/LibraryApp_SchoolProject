@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.views import APIView
 
-from .models import Student, Author, TextBook, Paralels, JustBook, Piece
+from .models import Student, Author, TextBook, Parallels, JustBook, Piece
 from . import serializers
 
 
@@ -43,6 +43,6 @@ class StudentDetailViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.StudentDetailSerializer
 
 
-class ParalelViewSet(viewsets.ModelViewSet):
-    queryset = Paralels.objects.all()
-    serializer_class = serializers.ParalelsSerializer
+class ParallelViewSet(viewsets.ModelViewSet):
+    queryset = Parallels.objects.all()
+    serializer_class = serializers.ParallelsSerializer
