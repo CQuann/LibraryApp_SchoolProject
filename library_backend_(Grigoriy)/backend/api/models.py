@@ -27,7 +27,7 @@ class TextBook(models.Model):
     name = models.CharField('Название', max_length=100)
     class_number = models.IntegerField('В каком классе выдаются', choices=CLASS_NUMBER_CHOICES)
     authors = models.ManyToManyField(Author)
-    release_year = models.DateField(blank=True)
+    release_year = models.DateField(blank=True, default=None)
 
     def __str__(self):
         return f'{self.name} {self.class_number}'
@@ -89,9 +89,9 @@ class Student(models.Model):
         verbose_name_plural = 'Ученики'
 
 
-class Paralels(models.Model):
+class Parallels(models.Model):
     main_class = models.PositiveSmallIntegerField(choices=CLASS_NUMBER_CHOICES)
-    paralel_numbers = models.PositiveSmallIntegerField()
+    parallel_numbers = models.PositiveSmallIntegerField()
 
     def __str__(self):
         return f'{self.main_class}-{self.paralel_numbers}'

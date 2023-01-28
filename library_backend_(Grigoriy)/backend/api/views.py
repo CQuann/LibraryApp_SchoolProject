@@ -1,14 +1,22 @@
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.views import APIView
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import *
 
-from .models import Student, Author, TextBook, Paralels, JustBook, Piece
+from .models import Student, Author, TextBook, Parallels, JustBook, Piece
 from . import serializers
 
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
-    serializer_class = serializers.StudentListSerializer
+    filterset_class = StudentFilter
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return serializers.StudentListSerializer
+        else:
+            return serializers.StudentDetailSerializer
 
 
 class AuthorsViewSet(viewsets.ModelViewSet):
@@ -19,11 +27,13 @@ class AuthorsViewSet(viewsets.ModelViewSet):
 class TextBookViewSet(viewsets.ModelViewSet):
     queryset = TextBook.objects.all()
     serializer_class = serializers.TextBookSerializer
+    filterset_class = TextBookFilter
 
 
 class PieceViewSet(viewsets.ModelViewSet):
     queryset = Piece.objects.all()
     serializer_class = serializers.PieceSerializer
+    filterset_class = PieceFilter
 
 
 class JustBookViewSet(viewsets.ModelViewSet):
@@ -43,6 +53,6 @@ class StudentDetailViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.StudentDetailSerializer
 
 
-class ParalelViewSet(viewsets.ModelViewSet):
-    queryset = Paralels.objects.all()
-    serializer_class = serializers.ParalelsSerializer
+class ParallelViewSet(viewsets.ModelViewSet):
+    queryset = Parallels.objects.all()
+    serializer_class = serializers.ParallelsSerializer

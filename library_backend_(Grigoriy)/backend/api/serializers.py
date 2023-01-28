@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from .models import Student, TextBook, Author, Paralels, JustBook, Piece
+from .models import Student, TextBook, Author, Parallels, JustBook, Piece
 
 
 class AuthorSerializer(ModelSerializer):
@@ -97,7 +97,7 @@ class StudentDetailSerializer(ModelSerializer, ):
         return instance
 
 
-class ParalelsSerializer(ModelSerializer):
+class ParallelsSerializer(ModelSerializer):
     class Meta:
-        model = Paralels
+        model = Parallels
         exclude = ['id']
