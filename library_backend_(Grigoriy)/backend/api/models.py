@@ -94,4 +94,4 @@ class Parallels(models.Model):
     parallel_numbers = models.PositiveSmallIntegerField()
 
     def __str__(self):
-        return f'{self.main_class}-{self.paralel_numbers}'
+        return f'{self.main_class}-{self.parallel_numbers}'
