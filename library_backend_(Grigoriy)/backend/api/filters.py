@@ -13,9 +13,10 @@ class StudentFilter(filters.FilterSet):
 
 class TextBookFilter(filters.FilterSet):
     class_number = filters.NumberFilter(field_name='class_number')
-    authors = filters.ModelMultipleChoiceFilter(field_name='authors',
-                                                to_field_name='name',
-                                                queryset=Author.objects.all())
+    authors = filters.ModelMultipleChoiceFilter(
+        field_name='authors__name',
+        to_field_name='name',
+        queryset=Author.objects.all())
     release_year = filters.DateRangeFilter(field_name='release_year')
 
     class Meta:
@@ -29,6 +30,7 @@ class PieceFilter(filters.FilterSet):
         to_field_name='name',
         queryset=Author.objects.all()
     )
+
     class Meta:
         model = Piece
         fields = ['author']

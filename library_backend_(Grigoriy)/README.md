@@ -14,3 +14,5 @@ api/books/<int:num>/ -возвращает все книги для указан
 
 :)
 mamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamamama
+
+переделать поле классов для учебников в список!!!!!!!
