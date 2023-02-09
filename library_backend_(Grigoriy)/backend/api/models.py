@@ -25,7 +25,7 @@ class Author(models.Model):
 class TextBook(models.Model):
     """Учебники"""
     name = models.CharField('Название', max_length=100)
-    class_number = models.IntegerField('В каком классе выдаются', choices=CLASS_NUMBER_CHOICES)
+    class_number = models.CharField('В каком классе выдаются', max_length=10)
     authors = models.ManyToManyField(Author)
     release_year = models.DateField(blank=True, default=None)
     relevant = models.SmallIntegerField(choices=CLASS_NUMBER_CHOICES, blank=True, null=True)

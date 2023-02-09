@@ -60,7 +60,9 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'C:/Users/krylo/VScode projects/LibraryApp_SchoolProject/library_frontend_petr/build'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +137,7 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
     )
 }
+
+STATICFILES_DIRS = [
+    'C:/Users/krylo/VScode projects/LibraryApp_SchoolProject/library_frontend_petr/build/static'
+]
