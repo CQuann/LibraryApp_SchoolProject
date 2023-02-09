@@ -27,8 +27,7 @@ class TextBook(models.Model):
     name = models.CharField('Название', max_length=100)
     class_number = models.CharField('В каком классе выдаются', max_length=10)
     authors = models.ManyToManyField(Author)
-    release_year = models.DateField(blank=True, default=None)
-    relevant = models.SmallIntegerField(choices=CLASS_NUMBER_CHOICES, blank=True, null=True)
+    release_year = models.PositiveIntegerField(blank=True, default=None)
 
     def __str__(self):
         return f'{self.name} {self.class_number}'
