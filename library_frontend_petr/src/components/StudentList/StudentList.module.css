@@ -2,6 +2,9 @@
 	height: auto;
 	padding: 30px;
 	background-color: var(--primary-color2);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .container {
