@@ -1,0 +1,20 @@
+.loader {
+	font-size: 10px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 7px dashed aqua;
+	animation: rotate 1s infinite linear;
+}
+
+
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}

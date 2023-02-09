@@ -1,0 +1,19 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+:root {
+	--primary-color: aqua;
+	--primary-color2: rgb(120, 255, 255);
+	--buttons-color: orange;
+	--bg-color: rgb(187, 187, 187);
+}

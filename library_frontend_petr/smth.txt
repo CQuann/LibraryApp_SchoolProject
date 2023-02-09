@@ -1,0 +1,130 @@
+<h1>Authors List</h1>
+            {authorsList.map((aut, id) =>
+                <div id={id.toString()}>
+                    {aut.name}
+                </div>
+            )}
+            <hr />
+            <h1>Author</h1>
+            {author}
+            <hr />
+            <MyInput
+                value={idForAuthor}
+                onChange={input => setIdForAuthor(input.target.value)}
+                type="text"
+                placeholder='Id for author'
+            />
+            <MyInput
+                value={updatedAuthor}
+                onChange={input => setUpdatedAuthor(input.target.value)}
+                type="text"
+                placeholder='update name author'
+            />
+
+            <MyButton onClick={() =>
+                // @ts-ignore
+                deleteAuthor(parseInt(idForAuthor))} >
+                delete Author
+            </MyButton>
+
+            <MyButton onClick={() =>
+                // @ts-ignore
+                patchAuthors(parseInt(idForAuthor), { "name": "qwerqqwerqwerqwerqwer" })} >
+                update Author
+            </MyButton>
+            <MyButton onClick={() =>
+                // @ts-ignore
+                postAuthor({ "name": "qwerqqwerqwerqwerqwer", "id": 11 })} >
+                post Author
+            </MyButton>
+            {parallels.map((mc, id) =>
+                <div id={id.toString()}>
+                    {mc.parallel_numbers}
+                </div>
+            )}
+
+
+
+			const [authorsList, setAuthorsList] = useState([{}])
+    const [author, setAuthor] = useState('')
+
+    const [justbookList, setjustbookList] = useState([{}])
+    const [justbook, setJustbook] = useState({})
+
+    const [parallelsList, setParallelsList] = useState([{}])
+    const [parallel, setParallel] = useState({})
+
+    const [piecesList, setPiecesList] = useState([{}])
+    const [piece, setPiece] = useState({})
+
+    const [studentsList, setStudentsList] = useState([{}])
+    const [student, setStudent] = useState({})
+
+    const [idForAuthor, setIdForAuthor] = useState(0)
+    const [updatedAuthor, setUpdatedAuthor] = useState('')
+
+    //textbook???
+
+
+
+    const [getAuthorsList, isAuthorsListLoading, AuthorsListError] = useFetching(async () => {
+        const response = await AuthorsService.getAuthorsList()
+        setAuthorsList(response)
+    })
+
+    const [postAuthor, isAuthorPosting, postAuthorError] = useFetching(async (newAuthor) => {
+        const response = await AuthorsService.postAuthor(newAuthor)
+    })
+
+    const [getAuthorsById, isAuthorsByIdLoading, AuthorsByIdError] = useFetching(async (id) => {
+        const response = await AuthorsService.getAuthorsById(id)
+        setAuthor(response.name)
+    })
+
+    const [patchAuthors, isAuthorPatching, AuthorsPatchingError] = useFetching(async (id, updatedAuthor) => {
+        const response = await AuthorsService.patchAuthor(id, updatedAuthor)
+        console.log(response)
+    })
+
+    const [deleteAuthor, isAuthorDeleteLoading, deleteAuthorError] = useFetching(async (id) => {
+        const response = await AuthorsService.deleteAuthor(id)
+        console.log(response)
+    })
+
+    //////////////////////////////////////////////////
+
+    // const [getJustbookList, isJustbookListGetLoading, getJustbookListError] = useFetching(async () => {
+    //     await JustbooksService.getJustbooksList()
+    // })
+
+    // const [postJustbook, isJustbookPosting, JustbookPostingError] = useFetching(async (newJustbook) => {
+    //     await JustbooksService.postJustbook(newJustbook)
+    // })
+
+    // const [getJustbookById, isJustbookByIdGetLoading, getJustbookByIdError] = useFetching(async (id) => {
+    //     // await JustbooksService.getJustbooksById()
+    // })
+
+    // const [getParallelssList, isParallelsListGetLoading, ParalllelsListGetError] = useFetching(async () => {
+    //     const response = await ParallelsService.getParallelsList()
+    //     setParallelsList(response)
+    // })
+
+
+
+
+
+    // const [getPiecesList, isPiecesListGetLoading, PiecesListGetError] = useFetching(async () => {
+    //     const response = await PiecesService.getPiecesList()
+    //     setPiecesList(response)
+    // })
+
+    // const [getStudentsList, isStudentsListGetLoading, StudentsListGetError] = useFetching(async () => {
+    //     const response = await StudentsService.getStudentsList()
+    //     setStudentsList(response)
+    // })
+
+    // const [getStudentById, isStudentByIdGetLoading, StudentByIdGetError] = useFetching(async (id) => {
+    //     const response = await StudentsService.getStudentById(id)
+    //     setStudent(response)
+    // })
