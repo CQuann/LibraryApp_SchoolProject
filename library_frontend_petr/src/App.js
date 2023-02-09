@@ -5,16 +5,16 @@ import MyInput from './components/UI/MyInput/MyInput'
 import MyButton from './components/UI/MyButton/MyButton'
 import styles from './style.module.css';
 import AppRouter from './components/AppRouter';
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 
 function App() {
 
 
     return (
         <div className='App' >
-            <BrowserRouter>
+            <HashRouter>
                 <AppRouter />
-            </BrowserRouter>
+            </HashRouter>
         </div>
     );
 }
