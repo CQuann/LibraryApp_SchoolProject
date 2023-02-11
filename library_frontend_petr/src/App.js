@@ -5,19 +5,21 @@ import MyInput from './components/UI/MyInput/MyInput'
 import MyButton from './components/UI/MyButton/MyButton'
 import styles from './style.module.css';
 import AppRouter from './components/AppRouter';
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { withLayout } from './components/Layout/Layout'
 
 function App() {
 
 
     return (
         <div className='App' >
-            <HashRouter>
+            <BrowserRouter>
                 <AppRouter />
-            </HashRouter>
+            </BrowserRouter>
         </div>
     );
 }
 
-export default App;
+export default withLayout(App);
+// export default App
 

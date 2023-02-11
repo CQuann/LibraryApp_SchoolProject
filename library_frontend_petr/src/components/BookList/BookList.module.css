@@ -1,0 +1,31 @@
+.container {
+	height: auto;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.book {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.btn1 {
+	font-size: 12px;
+	text-align: center;
+	height: 70px;
+	width: 30%;
+}
+
+.btn0 {
+	background-color: var(--buttons-color);
+	font-size: 25px;
+	padding: 20px 40px;
+}
