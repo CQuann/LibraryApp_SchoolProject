@@ -6,6 +6,7 @@ import MyButton from './components/UI/MyButton/MyButton'
 import styles from './style.module.css';
 import AppRouter from './components/AppRouter';
 import { BrowserRouter } from 'react-router-dom'
+import { withLayout } from './components/Layout/Layout'
 
 function App() {
 
@@ -19,5 +20,6 @@ function App() {
     );
 }
 
-export default App;
+export default withLayout(App);
+// export default App
 

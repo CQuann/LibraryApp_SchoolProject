@@ -13,7 +13,7 @@
 
 :root {
 	--primary-color: aqua;
-	--primary-color2: rgb(120, 255, 255);
+	--primary-color2: rgba(120, 255, 255, 0.781);
 	--buttons-color: orange;
-	--bg-color: rgb(158, 58, 58);
+	--bg-color: rgb(205, 205, 205);
 }

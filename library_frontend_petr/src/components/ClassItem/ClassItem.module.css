@@ -1,11 +1,11 @@
 .classItem {
-	font-size: 20px;
+	font-size: 25px;
 	background-color: var(--primary-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 70px;
-	height: 70px;
+	width: 100px;
+	height: 100px;
 	border-radius: 12px;
 	border: 1px solid black;
 	margin-right: 20px;

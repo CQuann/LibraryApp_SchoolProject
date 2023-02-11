@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { } from 'react'
 import StudentList from '../components/StudentList/StudentList'
 
 export default function classPage() {

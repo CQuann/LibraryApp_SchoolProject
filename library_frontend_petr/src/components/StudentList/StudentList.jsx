@@ -23,7 +23,6 @@ export default function StudentList() {
 	useEffect(() => {
 		// @ts-ignore
 		getStudents()
-
 	}, [])
 	return (
 		<div className="">

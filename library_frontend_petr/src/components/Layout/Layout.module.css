@@ -1,0 +1,18 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	min-height: 100vh;
+	gap: 0 30px;
+	grid-template-rows: auto 1fr auto;
+}
+
+.bodyContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.body {
+	padding: 50px;
+	width: 80%;
+	background-color: var(--bg-color);
+}

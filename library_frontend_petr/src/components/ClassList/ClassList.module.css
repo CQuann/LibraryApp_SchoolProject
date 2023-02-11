@@ -1,8 +1,6 @@
-.container {
+.classContainer {
 	display: flex;
 	margin-bottom: 40px;
-	background-color: var(--primary-color2);
 	flex-wrap: wrap;
-	width: 50%;
 	padding: 20px;
 }

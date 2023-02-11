@@ -1,15 +1,29 @@
-// @ts-nocheck
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useFetching } from '../hooks/useFetching'
 import StudentsService from '../API/StudentsService'
 import MyLoader from '../components/UI/MyLoader/MyLoader'
+import BookList from '../components/BookList/BookList'
 
 export default function studentPage() {
 	const params = useParams()
-	const [books, setBooks] = useState([{}])
-	const [aut, setAuthors] = useState([{}])
+	const [books, setBooks] = useState([{
+		"id": 0,
+		"authors": [
+			{
+				"id": 0,
+				"name": ""
+			},
+			{
+				"id": 1,
+				"name": ""
+			}
+		],
+		"name": "",
+		"class_number": "",
+		"release_year": 0
+	}])
 	const [student, setStudent] = useState({
 		"id": 0,
 		"text_books": [
@@ -47,7 +61,6 @@ export default function studentPage() {
 		const response = await StudentsService.getStudentById(params.id)
 		setBooks(response.text_books)
 		setStudent(response)
-		response.text_books.authors.map(aut)
 	})
 
 	useEffect(() => {
@@ -58,40 +71,13 @@ export default function studentPage() {
 
 	return (
 		<div>
-			{/* {isStudentLoading
+			{isStudentLoading
 				? <MyLoader />
-				:  */}
-			<div className="">
-				<h1>{student.surname} {student.name} {student.patronymic}</h1>
-				<hr />
-				{books.map(book =>
-					<div>
-						{/* <div>
-									Авторы:
-									{console.log(book.authors)}
-									{book.authors.map(aut =>
-										console.log(aut)
-										<div>
-											{aut.name}
-										</div>
-									)}
-								</div> */}
-						<div>
-							Название:
-							{book.name}
-						</div>
-						<div>
-							Выдается в классе:
-							{book.class_number}
-						</div>
-						<div>
-							Выпущена в {book.release_year} году
-						</div>
-						<hr />
-					</div>
-				)}
-			</div>
-			{/* } */}
+				:
+				<div className="">
+					<BookList studentId={student.id} />
+				</div>
+			}
 		</div>
 	)
 }
