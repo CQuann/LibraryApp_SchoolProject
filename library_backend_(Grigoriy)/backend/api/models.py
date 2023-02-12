@@ -38,24 +38,11 @@ class TextBook(models.Model):
         verbose_name_plural = 'Учебники'
 
 
-class Piece(models.Model):
-    """Произведения"""
-    name = models.CharField(max_length=100)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Произведение'
-        verbose_name_plural = 'Произведения'
-
-
 class JustBook(models.Model):
     """Собрания произведений"""
     name = models.CharField(max_length=100)
     authors = models.ManyToManyField(Author)
-    pieces = models.ManyToManyField(Piece)
+    description = models.TextField(max_length=1000, default='')
 
     def __str__(self):
         return self.name
