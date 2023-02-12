@@ -25,15 +25,27 @@ export default class JustbooksService {
 		const response = await axios.delete(`${process.env.REACT_APP_DOMAIN}/api/textbooks/${id}`)
 		return response.data
 	}
-	static async getTextbookWithFilters(class_number, authors) {
-		if (class_number && authors) {
-			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/?class_number=${class_number}&authors=${authors}`)
+	static async getTextbookWithFilters(class_number, authors, name) {
+		if (class_number && authors && name) {
+			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/?class_number=${class_number}&authors=${authors}&name=${name}`)
 			return response.data
-		} if (class_number && !authors) {
+		} if (class_number && name && !authors) {
+			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/?class_number=${class_number}&name=${name}`)
+			return response.data
+		} if (class_number && authors && !name) {
+			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/?authors=${authors}&class_number=${class_number}`)
+			return response.data
+		} if (name && authors && !class_number) {
+			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/?authors=${authors}&name=${name}`)
+			return response.data
+		} if (class_number && !name && !authors) {
 			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/?class_number=${class_number}`)
 			return response.data
-		} if (class_number && !authors) {
+		} if (!class_number && authors && !name) {
 			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/?authors=${authors}`)
+			return response.data
+		} if (name && !authors && !class_number) {
+			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/?name=${name}`)
 			return response.data
 		} else {
 			const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks`)

@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import *
 
-from .models import Student, Author, TextBook, Parallels, JustBook, Piece
+from .models import Student, Author, TextBook, Parallels, JustBook
 from . import serializers
 
 
@@ -28,12 +28,6 @@ class TextBookViewSet(viewsets.ModelViewSet):
     queryset = TextBook.objects.all()
     serializer_class = serializers.TextBookSerializer
     filterset_class = TextBookFilter
-
-
-class PieceViewSet(viewsets.ModelViewSet):
-    queryset = Piece.objects.all()
-    serializer_class = serializers.PieceSerializer
-    filterset_class = PieceFilter
 
 
 class JustBookViewSet(viewsets.ModelViewSet):

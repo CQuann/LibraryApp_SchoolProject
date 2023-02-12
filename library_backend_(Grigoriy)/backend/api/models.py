@@ -38,24 +38,17 @@ class TextBook(models.Model):
         verbose_name_plural = 'Учебники'
 
 
-class Piece(models.Model):
-    """Произведения"""
-    name = models.CharField(max_length=100)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Произведение'
-        verbose_name_plural = 'Произведения'
+class TakeDates(models.Model):
+    """Даты взятия учебников"""
+    book = models.ForeignKey(TextBook, on_delete=models.DO_NOTHING)
+    date_take = models.DateField()
 
 
 class JustBook(models.Model):
     """Собрания произведений"""
     name = models.CharField(max_length=100)
     authors = models.ManyToManyField(Author)
-    pieces = models.ManyToManyField(Piece)
+    description = models.TextField(max_length=1000, default='')
 
     def __str__(self):
         return self.name
@@ -81,6 +74,7 @@ class Student(models.Model):
     just_books = models.ManyToManyField(JustBook, blank=True, default=None)
     class_number = models.PositiveSmallIntegerField(choices=CLASS_NUMBER_CHOICES)
     class_index = models.PositiveSmallIntegerField(choices=CLASS_INDEX_CHOICES)
+    take_dates = models.ManyToManyField(TakeDates, default=None)
 
     def __str__(self):
         return f'{self.surname} {self.name} {self.patronymic} {self.class_number}-{self.class_index}'

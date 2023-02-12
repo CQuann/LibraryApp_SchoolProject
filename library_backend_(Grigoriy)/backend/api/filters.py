@@ -1,5 +1,5 @@
 from django_filters import rest_framework as filters
-from .models import Student, TextBook, Author, Piece
+from .models import Student, TextBook, Author
 
 
 class StudentFilter(filters.FilterSet):
@@ -18,19 +18,8 @@ class TextBookFilter(filters.FilterSet):
         to_field_name='name',
         queryset=Author.objects.all())
     release_year = filters.DateRangeFilter(field_name='release_year')
+    name = filters.CharFilter(field_name='name', lookup_expr='icontains')
 
     class Meta:
         model = TextBook
-        fields = ['class_number', 'authors', 'release_year']
-
-
-class PieceFilter(filters.FilterSet):
-    author = filters.ModelChoiceFilter(
-        field_name='author',
-        to_field_name='name',
-        queryset=Author.objects.all()
-    )
-
-    class Meta:
-        model = Piece
-        fields = ['author']
+        fields = ['class_number', 'authors', 'release_year', 'name']

@@ -79,7 +79,7 @@ export default function BringBook() {
 
 
 	const [getBooks, isBooksLoading, bookError] = useFetching(async () => {
-		const response = await TextBooksService.getTextbookWithFilters(classFilter, authorFilter)
+		const response = await TextBooksService.getTextbookWithFilters(classFilter, authorFilter, query)
 		setBooks(response)
 	})
 
@@ -147,6 +147,9 @@ export default function BringBook() {
 								{classOption}
 							</option>
 						)}
+						<option value={""}>
+							Сбросить фильтр
+						</option>
 					</select>
 					<h1 className={cn.header} >Фильтр по авторам</h1>
 					<select value={authorFilter} onChange={changeAuthorsFilter} className={cn.authorFilter} >
@@ -155,21 +158,32 @@ export default function BringBook() {
 								{author.name}
 							</option>
 						)}
+						<option value={""}>
+							Сбросить фильтр
+						</option>
 					</select>
 					<h1 className={cn.header} >Поиск</h1>
-					<MyInput
-						style={{ marginTop: -5 }}
-						value={query}
-						onChange={(event) => setQuery(event.target.value)}
-					/>
-					<p>
-						{query}
-					</p>
+					<div className={cn.search}>
+						<MyInput
+							style={{ marginTop: -5, marginLeft: -15 }}
+							value={query}
+							onChange={(event) => setQuery(event.target.value)}
+						/>
+						<div style={{ marginLeft: 40, marginBottom: 10 }} >
+							<MyButton onClick={() =>
+								// @ts-ignore
+								getBooks()} >
+								Найти
+							</MyButton>
+						</div>
+
+					</div>
+
 					<div className={cn.books}>
 						{books.map(b =>
 							<div className={cn.bookContainer} >
 								<BookItemSec book={b} />
-								<MyButton onClick={() => addBook(b)} >
+								<MyButton onClick={() => addBook(b)}  >
 									Добавить книгу
 								</MyButton>
 							</div>
