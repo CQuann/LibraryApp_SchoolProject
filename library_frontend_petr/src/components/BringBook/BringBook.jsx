@@ -87,11 +87,15 @@ export default function BringBook() {
 							</option>
 						)}
 					</select>
+					<h1 className={cn.header} >Поиск</h1>
 					<MyInput
-						className={cn.search}
+						style={{ marginTop: -5 }}
 						value={query}
-					// onChange={}
+						onChange={(event) => setQuery(event.target.value)}
 					/>
+					<p>
+						{query}
+					</p>
 					<div className={cn.books}>
 						{books.map(b =>
 							<div>

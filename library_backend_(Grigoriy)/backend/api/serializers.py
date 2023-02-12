@@ -17,6 +17,11 @@ class TextBookSerializer(ModelSerializer):
     class Meta:
         model = TextBook
         fields = '__all__'
+    
+    def create(self, validated_data):
+        authors_data = validated_data.pop('authors')
+        textbook_instance = TextBook.objects.create(**validated_data)
+        return textbook_instance
 
     def update(self, instance, validated_data):
         authors_data = validated_data.pop("authors")
@@ -78,6 +83,12 @@ class StudentDetailSerializer(ModelSerializer, ):
     class Meta:
         model = Student
         fields = '__all__'
+    
+    def create(self, validated_data):
+        textbooks_data = validated_data.pop('text_books')
+        justbooks_data = validated_data.pop('just_books')
+        student_instance = Student.objects.create(**validated_data)
+        return student_instance
 
     def update(self, instance, validated_data):
         textbooks_data = validated_data.pop('text_books')
@@ -89,7 +100,9 @@ class StudentDetailSerializer(ModelSerializer, ):
         instance.just_books.set([])
         for tbook_data in textbooks_data:
             textbook_name = tbook_data.get('name')
-            tbook_id = TextBook.objects.get(name=textbook_name)
+            textbook_class_number = tbook_data.get('class_number')
+            textbook_release_year = tbook_data.get('release_year')
+            tbook_id = TextBook.objects.get(name=textbook_name, class_number=textbook_class_number, release_year=textbook_release_year)
             instance.text_books.add(tbook_id)
         for jbook_data in justbooks_data:
             justbook_name = jbook_data.get('name')
