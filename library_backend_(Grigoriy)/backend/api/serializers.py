@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from .models import Student, TextBook, Author, Parallels, JustBook
+from .models import Student, TextBook, Author, Parallels, JustBook, TakeDates
 
 
 class AuthorSerializer(ModelSerializer):
@@ -61,9 +61,16 @@ class StudentListSerializer(ModelSerializer):
         exclude = ['text_books', 'just_books']
 
 
+class TakeDateSerializer(ModelSerializer):
+    class Meta:
+        model = TakeDates
+        fields = '__all__'
+
+
 class StudentDetailSerializer(ModelSerializer, ):
     text_books = TextBookSerializer(many=True)
     just_books = JustBookSerializer(many=True)
+    take_dates = TakeDateSerializer(many=True)
 
     class Meta:
         model = Student
