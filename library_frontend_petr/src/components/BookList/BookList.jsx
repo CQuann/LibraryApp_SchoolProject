@@ -1,13 +1,15 @@
 import StudentsService from 'API/StudentsService'
-import BookItem from 'components/BookItem/BookItem'
 import MyModal from 'components/UI/modal/MyModal'
 import MyButton from 'components/UI/MyButton/MyButton'
+import MyLoader from 'components/UI/MyLoader/MyLoader'
 import { useFetching } from 'hooks/useFetching'
 import React, { useEffect, useState } from 'react'
 import styles from './BookList.module.css'
+import { useHistory } from 'react-router-dom';
+import BookItemSec from 'components/BookItemSec/BookItemSec'
 
 export default function BookList({ studentId }) {
-
+	const router = useHistory()
 	const [StudentBooks, setBooks] = useState([
 		{
 			"id": 0,
@@ -56,11 +58,11 @@ export default function BookList({ studentId }) {
 		"class_number": 0,
 		"class_index": 0
 	})
-	const [modal, setModal] = useState(false);
-
+	let a = 0
 
 	const [deleteBook, isBookDeletind, BookDeletindError] = useFetching(async (id, updatedStudent) => {
 		const response = await StudentsService.patchStudent(id, updatedStudent)
+		a += 1
 	})
 	const [getStudent, isStudentLoading, StudentLoadingError] = useFetching(async (StudentId) => {
 		const response = await StudentsService.getStudentById(StudentId)
@@ -90,25 +92,28 @@ export default function BookList({ studentId }) {
 	useEffect(() => {
 		// @ts-ignore
 		getStudent(studentId)
-	}, [])
+	}, [a])
 
 	return (
-		<div className={styles.container} >
-			<h1 className={styles.header} >{student.surname} {student.name} {student.patronymic} ({student.class_number}-{student.class_index})</h1>
-			<MyButton className={styles.btn0} onClick={() => setModal(true)}>
-				Взять книгу
-			</MyButton>
-			<MyModal visible={modal} setVisible={setModal}>
-				hello
-			</MyModal>
-			{StudentBooks.map(book =>
-				<div className={styles.book} >
-					<BookItem book={book} id={student.id} books={StudentBooks} />
-					<MyButton className={styles.btn1} onClick={() => delBook(book.id)} >
-						{student.name} принес "{book.name}"
+		<div className="">
+			{isBookDeletind || isStudentLoading
+				? <MyLoader />
+				: <div className={styles.container} >
+					<h1 className={styles.header} >{student.surname} {student.name} {student.patronymic} ({student.class_number}-{student.class_index})</h1>
+					<MyButton className={styles.btn0} onClick={() => router.push(`/bringBook/${student.id}`)}>
+						Добавить книгу
 					</MyButton>
+					{StudentBooks.map(book =>
+						<div className={styles.book} >
+							<BookItemSec book={book} />
+							<MyButton className={styles.btn1} onClick={() => delBook(book.id)} >
+								{student.name} принес "{book.name}"
+							</MyButton>
+						</div>
+					)}
 				</div>
-			)}
+			}
 		</div>
+
 	)
 }

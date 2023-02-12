@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useFetching } from '../hooks/useFetching'
 import ClassList from '../components/ClassList/ClassList'
 import cl from './styles.module.css'
-import { withLayout } from 'components/Layout/Layout'
+import MyLoader from '../components/UI/MyLoader/MyLoader'
 
 
 const classes = () => {
@@ -25,20 +25,27 @@ const classes = () => {
 	}, [])
 
 	return (
-		<div className={cl.container}>
-			<h1
-				style={{ margin: 20 }}
-			>
-				Классы:
-			</h1>
-			{parallels.map(mc =>
-				<div>
-					<ClassList number_of_parallels={[...Array(mc.parallel_numbers).keys()]} main_class={mc.main_class} />
-					<hr />
-				</div>
+		<div className="">
+			{isParallelsListLoading
+				? <MyLoader />
+				:
+				<div className={cl.container}>
+					<h1
+						style={{ margin: 20 }}
+					>
+						Классы:
+					</h1>
+					{parallels.map(mc =>
+						<div>
+							<ClassList number_of_parallels={[...Array(mc.parallel_numbers).keys()]} main_class={mc.main_class} />
+							<hr />
+						</div>
 
-			)}
+					)}
+				</div>
+			}
 		</div>
+
 	);
 }
 

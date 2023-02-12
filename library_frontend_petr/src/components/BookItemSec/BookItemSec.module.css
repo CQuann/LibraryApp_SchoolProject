@@ -1,0 +1,35 @@
+.standart {
+	color: #000;
+	font-size: 30px;
+	width: 700px;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 10px;
+	border: 1px solid #000;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	gap: 30px;
+	background-color: var(--primary-color);
+	cursor: pointer;
+}
+
+.dopInfo {
+	font-size: 25px;
+	width: 700px;
+	padding: 20px;
+	margin: 20px;
+	border: 2px dashed rgb(120, 120, 120);
+	background-color: var(--primary-color);
+	border-radius: 10px;
+	display: grid;
+	grid-template-columns: 40% 60%;
+	/* grid-template-rows: 20px 20px 20px; */
+	gap: 10px;
+	cursor: pointer;
+}
+
+.smth {
+	padding: 7px 25px;
+	background-color: var(--primary-color2);
+	border: 0px solid #000;
+}
