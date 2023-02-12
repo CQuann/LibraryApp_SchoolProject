@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from .models import Student, TextBook, Author, Parallels, JustBook, Piece
+from .models import Student, TextBook, Author, Parallels, JustBook
 
 
 class AuthorSerializer(ModelSerializer):
@@ -36,17 +36,8 @@ class TextBookSerializer(ModelSerializer):
         return instance
 
 
-class PieceSerializer(ModelSerializer):
-    author = AuthorSerializer(many=False)
-
-    class Meta:
-        model = Piece
-        fields = '__all__'
-
-
 class JustBookSerializer(ModelSerializer):
     authors = AuthorSerializer(many=True)
-    pieces = PieceSerializer(many=True)
 
     class Meta:
         model = JustBook
@@ -54,19 +45,13 @@ class JustBookSerializer(ModelSerializer):
 
     def update(self, instance, validated_data):
         authors_data = validated_data.pop('authors')
-        pieces_data = validated_data.pop('pieces')
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
         instance.authors.set([])
-        instance.pieces.set([])
         for author_data in authors_data:
             author_id = author_data.get('id')
             instance.authors.add(author_id)
-        for piece_data in pieces_data:
-            piece_name = piece_data.get('name')
-            piece_id = Piece.objects.get(name=piece_name)
-            instance.pieces.add(piece_id)
         return instance
 
 
