@@ -1,14 +1,19 @@
 import AuthorsService from 'API/AuthorsService'
+import StudentsService from 'API/StudentsService'
 import TextBooksService from 'API/TextBooksService'
 import BookItemSec from 'components/BookItemSec/BookItemSec'
+import MyButton from 'components/UI/MyButton/MyButton'
 import MyInput from 'components/UI/MyInput/MyInput'
 import MyLoader from 'components/UI/MyLoader/MyLoader'
 import { useFetching } from 'hooks/useFetching'
 import React, { useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import cn from './BringBook.module.css'
 
 export default function BringBook() {
 	const classesFilter = ['7', '8', '9', '10', '11']
+	const params = useParams()
+	const router = useHistory()
 	const [classFilter, setClassFilter] = useState('')
 	const [authors, setAuthors] = useState([{
 		id: 0,
@@ -30,10 +35,42 @@ export default function BringBook() {
 			],
 			"name": "",
 			"class_number": "0",
-			"release_year": 0
+			"release_year": 0,
+			"amount": 0
 		}
 	])
 	const [query, setQuery] = useState('')
+	const [student, setStudent] = useState({
+		"id": 4,
+		"text_books": [
+			{
+				"id": 0,
+				"authors": [
+					{
+						"id": 0,
+						"name": ""
+					}
+				],
+				"name": "",
+				"class_number": "",
+				"release_year": 0,
+				"amount": 0
+			}
+		],
+		"just_books": [
+			{
+				"id": 0,
+				"authors": [],
+				"pieces": [],
+				"name": ""
+			}
+		],
+		"surname": "",
+		"name": "",
+		"patronymic": "",
+		"class_number": 0,
+		"class_index": 0
+	})
 
 	const [getAuthors, isAuthorsLoading, authorsError] = useFetching(async () => {
 		const response = await AuthorsService.getAuthorsList()
@@ -46,11 +83,26 @@ export default function BringBook() {
 		setBooks(response)
 	})
 
+	const [getStudentBooks, isStudentBooksLoading, studentBooksError] = useFetching(async () => {
+		// @ts-ignore
+		const response = await StudentsService.getStudentById(params.id)
+		setStudent(response)
+	})
+
+	const [bringBook, isBookBringing, bringBookError] = useFetching(async (updatedStudent) => {
+		// @ts-ignore
+		const response = await StudentsService.patchStudent(params.id, updatedStudent)
+		// @ts-ignore
+		router.push(`/students/${params.id}`)
+	})
+
 	useEffect(() => {
 		// @ts-ignore
 		getAuthors()
 		// @ts-ignore
 		getBooks()
+		//@ts-ignore
+		getStudentBooks()
 	}, [])
 
 	useEffect(() => {
@@ -64,6 +116,23 @@ export default function BringBook() {
 
 	function changeAuthorsFilter(event) {
 		setAuthorFilter(event.target.value);
+	}
+
+	const addBook = (addingBook) => {
+		if (window.confirm('Вы уверены?')) {
+			const a = []
+			Array.from(student.text_books).map(b => {
+				a.push(b)
+			})
+			a.push(addingBook)
+			student.text_books = a
+			// @ts-ignore
+			bringBook(student)
+		}
+		else {
+			return
+		}
+
 	}
 
 	return (
@@ -98,8 +167,11 @@ export default function BringBook() {
 					</p>
 					<div className={cn.books}>
 						{books.map(b =>
-							<div>
+							<div className={cn.bookContainer} >
 								<BookItemSec book={b} />
+								<MyButton onClick={() => addBook(b)} >
+									Добавить книгу
+								</MyButton>
 							</div>
 						)}
 					</div>

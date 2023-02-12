@@ -9,8 +9,8 @@ export const Header = ({ ...props }) => {
 				Library App
 			</h1>
 			<div></div>
-			<a href='/#' target='_blank' className={styles.page1}>
-				page1
+			<a href='/editing/' target='_self' className={styles.page1}>
+				Редактирование
 			</a>
 			<a href='/#' target='_blank' className={styles.page2}>
 				page2

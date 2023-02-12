@@ -35,3 +35,9 @@
 .header {
 	margin-bottom: 25px;
 }
+
+.bookContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

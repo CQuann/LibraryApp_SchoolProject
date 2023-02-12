@@ -5,6 +5,7 @@
 	border: 1px solid #000;
 	cursor: pointer;
 	border-radius: 5px;
+	height: 70px;
 }
 
 .myButton:hover {
