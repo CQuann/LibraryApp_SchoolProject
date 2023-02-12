@@ -30,5 +30,4 @@ export default class StudentsService {
 		const response = await axios.delete(`${process.env.REACT_APP_DOMAIN}/api/student/${id}/`)
 		return response.data
 	}
-
 }
