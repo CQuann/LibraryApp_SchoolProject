@@ -10,7 +10,7 @@ import BookItemSec from 'components/BookItemSec/BookItemSec'
 
 export default function BookList({ studentId }) {
 	const router = useHistory()
-	const [StudentBooks, setBooks] = useState([
+	const [studentBooks, setBooks] = useState([
 		{
 			"id": 0,
 			"authors": [
@@ -58,11 +58,10 @@ export default function BookList({ studentId }) {
 		"class_number": 0,
 		"class_index": 0
 	})
-	let a = 0
 
 	const [deleteBook, isBookDeletind, BookDeletindError] = useFetching(async (id, updatedStudent) => {
 		const response = await StudentsService.patchStudent(id, updatedStudent)
-		a += 1
+                console.log(response)
 	})
 	const [getStudent, isStudentLoading, StudentLoadingError] = useFetching(async (StudentId) => {
 		const response = await StudentsService.getStudentById(StudentId)
@@ -74,7 +73,7 @@ export default function BookList({ studentId }) {
 	const delBook = (id) => {
 		if (window.confirm('Вы уверены?')) {
 			const a = []
-			Array.from(StudentBooks).map(b => {
+			Array.from(studentBooks).map(b => {
 				if (b.id !== id) {
 					a.push(b)
 				}
@@ -92,7 +91,7 @@ export default function BookList({ studentId }) {
 	useEffect(() => {
 		// @ts-ignore
 		getStudent(studentId)
-	}, [a])
+	}, [])
 
 	return (
 		<div className="">
@@ -103,7 +102,7 @@ export default function BookList({ studentId }) {
 					<MyButton className={styles.btn0} onClick={() => router.push(`/bringBook/${student.id}`)}>
 						Добавить книгу
 					</MyButton>
-					{StudentBooks.map(book =>
+					{studentBooks.map(book =>
 						<div className={styles.book} >
 							<BookItemSec book={book} />
 							<MyButton className={styles.btn1} onClick={() => delBook(book.id)} >
