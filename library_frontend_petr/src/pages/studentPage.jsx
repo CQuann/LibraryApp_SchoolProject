@@ -8,22 +8,6 @@ import BookList from '../components/BookList/BookList'
 
 export default function studentPage() {
 	const params = useParams()
-	const [books, setBooks] = useState([{
-		"id": 0,
-		"authors": [
-			{
-				"id": 0,
-				"name": ""
-			},
-			{
-				"id": 1,
-				"name": ""
-			}
-		],
-		"name": "",
-		"class_number": "",
-		"release_year": 0
-	}])
 	const [student, setStudent] = useState({
 		"id": 0,
 		"text_books": [
@@ -59,7 +43,6 @@ export default function studentPage() {
 	const [getStudent, isStudentLoading, getStudentError] = useFetching(async () => {
 		// @ts-ignore
 		const response = await StudentsService.getStudentById(params.id)
-		setBooks(response.text_books)
 		setStudent(response)
 	})
 

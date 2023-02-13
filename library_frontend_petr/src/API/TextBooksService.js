@@ -12,17 +12,17 @@ export default class JustbooksService {
 	}
 
 	static async getTextbookById(id) {
-		const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/${id}`)
+		const response = await axios.get(`${process.env.REACT_APP_DOMAIN}/api/textbooks/${id}/`)
 		return response.data
 	}
 
 	static async patchTextbook(id, updatedTextbook) {
-		const response = await axios.patch(`${process.env.REACT_APP_DOMAIN}/api/textbooks/${id}`, updatedTextbook)
+		const response = await axios.patch(`${process.env.REACT_APP_DOMAIN}/api/textbooks/${id}/`, updatedTextbook)
 		return response.data
 	}
 
 	static async deleteTextbook(id) {
-		const response = await axios.delete(`${process.env.REACT_APP_DOMAIN}/api/textbooks/${id}`)
+		const response = await axios.delete(`${process.env.REACT_APP_DOMAIN}/api/textbooks/${id}/`)
 		return response.data
 	}
 	static async getTextbookWithFilters(class_number, authors, name) {

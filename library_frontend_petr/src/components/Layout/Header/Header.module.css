@@ -9,3 +9,12 @@
 	min-height: 75px;
 	grid-template-columns: auto 1fr auto auto auto;
 }
+
+.title {
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 30px;
+	text-decoration: none;
+	margin-left: -5px;
+	/* margin-top: -5px; */
+}

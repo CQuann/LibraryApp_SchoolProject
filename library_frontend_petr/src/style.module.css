@@ -14,7 +14,10 @@
 
 :root {
 	--primary-color: rgb(0, 162, 255);
-	--primary-color2: rgba(120, 161, 255, 0.781);
+	--primary-color2: rgb(95, 186, 255);
 	--buttons-color: orange;
-	--bg-color: rgb(205, 205, 205);
+	--buttons-color2: rgb(59, 183, 255);
+	--bg-color: rgb(125, 125, 125);
+	--bg-color2: rgb(154, 154, 154);
+	--text-color: rgb(59, 59, 59);
 }

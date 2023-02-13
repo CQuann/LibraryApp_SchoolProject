@@ -1,26 +1,36 @@
 import styles from './BookItemSec.module.css'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import MyModal from 'components/UI/modal/MyModal'
 
-export default function BookItemSec({ book }) {
-    const [dopInfo, setDopInfo] = useState(false)
+export default function BookItemSec(props) {
+    const [modal, setModal] = useState(false)
 
     return (
-        <div className={styles.wrapper} onClick={() => setDopInfo(!dopInfo)} >
-            {dopInfo
-                ?
+        <div className="">
+            <div {...props} className={styles.wrapper} onClick={() => setModal(true)} >
+                <div className={styles.standart} >
+                    <div className={styles.name} style={{ textAlign: 'center' }}>
+                        {props.book.name}
+                    </div>
+                    <div className={styles.class} >
+                        {props.book.class_number}
+                    </div>
+                </div>
+            </div>
+            <MyModal visible={modal} setVisible={setModal} >
                 <div className={styles.dopInfo} >
                     <div className={styles.smth}>
                         Название:
                     </div>
                     <div className={styles.smth}>
-                        {book.name}
+                        {props.book.name}
                     </div>
                     <div className={styles.smth}>
                         Авторы:
                     </div>
                     <div>
                         <div className={styles.smth}>
-                            {book.authors.map(aut =>
+                            {props.book.authors.map(aut =>
                                 <div>
                                     {aut.name}
                                 </div>
@@ -31,23 +41,15 @@ export default function BookItemSec({ book }) {
                         Выдается в классе:
                     </div>
                     <div className={styles.smth} >
-                        {book.class_number}
+                        {props.book.class_number}
                     </div>
                     <div className={styles.smth}>
-                        Выпущена в {book.release_year} году
+                        Выпущена в {props.book.release_year} году
                     </div>
                 </div>
-                :
-                <div className={styles.standart} >
-                    <div className={styles.name} style={{ textAlign: 'center' }}>
-                        {book.name}
-                    </div>
-                    <div className={styles.class} >
-                        {book.class_number}
-                    </div>
-                </div>
-            }
+            </MyModal>
         </div>
+
 
     )
 }

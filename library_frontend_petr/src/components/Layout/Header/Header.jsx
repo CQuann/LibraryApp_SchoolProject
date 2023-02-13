@@ -1,13 +1,20 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './Header.module.css';
 
 
 export const Header = ({ ...props }) => {
+	let router = useHistory()
+	const a = () => {
+
+	}
+
+
 	return (
 		<header {...props} className={styles.head} >
-			<h1>
+			<a href='/classes' target='_self' className={styles.title}>
 				Library App
-			</h1>
+			</a>
 			<div></div>
 			<a href='/editing/' target='_self' className={styles.page1}>
 				Редактирование
