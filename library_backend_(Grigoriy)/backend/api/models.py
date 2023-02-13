@@ -48,7 +48,7 @@ class JustBook(models.Model):
     """Собрания произведений"""
     name = models.CharField(max_length=100)
     authors = models.ManyToManyField(Author)
-    description = models.TextField(max_length=1000, default='')
+    description = models.TextField(max_length=1000, default='', blank=True)
 
     def __str__(self):
         return self.name
