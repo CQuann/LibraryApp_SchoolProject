@@ -85,6 +85,7 @@ class StudentDetailSerializer(ModelSerializer, ):
     def update(self, instance, validated_data):
         textbooks_data = validated_data.pop('text_books')
         justbooks_data = validated_data.pop('just_books')
+        take_dates = validated_data.pop('take_dates')
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
@@ -100,6 +101,7 @@ class StudentDetailSerializer(ModelSerializer, ):
             justbook_name = jbook_data.get('name')
             jbook_id = JustBook.objects.get(name=justbook_name)
             instance.just_books.add(jbook_id)
+        
         return instance
 
 
