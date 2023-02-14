@@ -8,24 +8,6 @@ import BookItemSec from 'components/BookItemSec/BookItemSec'
 
 export default function BookList({ studentId }) {
 	const router = useHistory()
-	const [studentBooks, setBooks] = useState([
-		{
-			"id": 0,
-			"authors": [
-				{
-					"id": 0,
-					"name": ""
-				},
-				{
-					"id": 0,
-					"name": ""
-				}
-			],
-			"name": "",
-			"class_number": "0",
-			"release_year": 0
-		}
-	])
 	const [student, setStudent] = useState({
 		"id": 0,
 		"text_books": [
@@ -59,31 +41,30 @@ export default function BookList({ studentId }) {
 
 	const [deleteBook, isBookDeletind, BookDeletindError] = useFetching(async (id, updatedStudent) => {
 		const response = await StudentsService.patchStudent(id, updatedStudent)
+<<<<<<< HEAD
 
                 console.log(response)
 
+=======
+>>>>>>> 93882288812efa65dfc270fbabcdd0eea836d26b
 		setStudent(response)
 	})
 	const [getStudent, isStudentLoading, StudentLoadingError] = useFetching(async (StudentId) => {
 		const response = await StudentsService.getStudentById(StudentId)
-		// @ts-ignore
-		setBooks(response.text_books)
 		setStudent(response)
 	})
 
 	const delBook = (id) => {
 		if (window.confirm('Вы уверены?')) {
 			const a = []
-			Array.from(studentBooks).map(b => {
+			Array.from(student.text_books).map(b => {
 				if (b.id !== id) {
 					a.push(b)
 				}
 			})
 			student.text_books = a
-			console.log(student)
 			// @ts-ignore
 			deleteBook(student.id, student)
-			console.log(BookDeletindError)
 		}
 		else {
 			return
@@ -105,6 +86,7 @@ export default function BookList({ studentId }) {
 					<button className={styles.btn0} onClick={() => router.push(`/bringBook/${student.id}`)}>
 						Добавить книгу
 					</button>
+<<<<<<< HEAD
 					{studentBooks.map(book =>
 						<div className={styles.book} >
 							<BookItemSec book={book} />
@@ -113,6 +95,20 @@ export default function BookList({ studentId }) {
 							</button>
 						</div>
 					)}
+=======
+					<div>
+						{
+							student.text_books.map(b =>
+								<div className={styles.book} >
+									<BookItemSec book={b} />
+									<button className={styles.btn1} onClick={() => delBook(b.id)} >
+										{student.name} принес "{b.name}"
+									</button>
+								</div>
+							)
+						}
+					</div>
+>>>>>>> 93882288812efa65dfc270fbabcdd0eea836d26b
 				</div>
 			}
 		</div>
