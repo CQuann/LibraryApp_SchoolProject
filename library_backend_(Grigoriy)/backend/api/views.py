@@ -5,7 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .filters import *
 from rest_framework.decorators import api_view, renderer_classes
 
-from .models import Student, Author, TextBook, Parallels, JustBook
+from .models import Student, Author, TextBook, Parallels, JustBook, LibraryWorker
 from . import serializers
 
 
@@ -46,8 +46,9 @@ class ParallelViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ParallelsSerializer
 
 
-password = '1234'
-@api_view(['POST'])
-def autentification(request):
-    ok = request.data == password
-    return Response(ok)
+@api_view(['GET'])
+def PasswordCheck(request):
+    account_data = LibraryWorker.objects.get(pk=1)
+    serializer = serializers.UserSerializer(account_data)
+    return Response(serializer.data)
+

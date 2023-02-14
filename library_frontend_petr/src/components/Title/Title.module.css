@@ -1,0 +1,28 @@
+.header {
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 90px;
+	margin: 80px 0;
+}
+
+.description {
+	text-align: center;
+	font-size: 30px;
+	margin-bottom: 120px;
+}
+
+.signIn {
+	background-color: rgb(85, 85, 85);
+	height: 60vh;
+	padding: 70px;
+}
+
+.headerSignIn {
+	font-size: 40px;
+	color: rgb(178, 178, 178);
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 40px;
+}

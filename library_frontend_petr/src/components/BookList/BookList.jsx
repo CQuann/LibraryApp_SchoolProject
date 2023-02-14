@@ -80,6 +80,14 @@ export default function BookList({ studentId }) {
 					<button className={styles.btn0} onClick={() => router.push(`/bringBook/${student.id}`)}>
 						Добавить книгу
 					</button>
+					{student.text_books.map(book =>
+						<div className={styles.book} >
+							<BookItemSec book={book} />
+							<button className={styles.btn1} onClick={() => delBook(book.id)} >
+								{student.name} принес "{book.name}"
+							</button>
+						</div>
+					)}
 					<div>
 						{
 							student.text_books.map(b =>

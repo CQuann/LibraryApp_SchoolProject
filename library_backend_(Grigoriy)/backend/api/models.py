@@ -90,3 +90,8 @@ class Parallels(models.Model):
 
     def __str__(self):
         return f'{self.main_class}-{self.parallel_numbers}'
+
+
+class LibraryWorker(models.Model):
+    login = models.CharField(max_length=30)
+    password = models.CharField(max_length=30)
