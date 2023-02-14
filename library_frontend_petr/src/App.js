@@ -1,25 +1,34 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { useFetching } from './hooks/useFetching'
-import MyInput from './components/UI/MyInput/MyInput'
-import MyButton from './components/UI/MyButton/MyButton'
 import styles from './style.module.css';
 import AppRouter from './components/AppRouter';
 import { BrowserRouter } from 'react-router-dom'
 import { withLayout } from './components/Layout/Layout'
+import { AuthContext } from 'context';
 
 function App() {
+    const [isAuth, setIsAuth] = useState(false);
+    const [isLoading, setIsLoading] = useState(true)
 
+    useEffect(() => {
+        if (localStorage.getItem('auth')) {
+            setIsAuth(false)
+        }
+        setIsLoading(false)
+    }, [])
 
     return (
-        <div className='App' >
+        <AuthContext.Provider value={{
+            isAuth,
+            setIsAuth,
+            isLoading
+        }}>
             <BrowserRouter>
                 <AppRouter />
             </BrowserRouter>
-        </div>
+        </AuthContext.Provider>
     );
 }
 
 export default withLayout(App);
-// export default App
 

@@ -3,6 +3,7 @@ import classes from '../pages/classes';
 import studentPage from 'pages/studentPage';
 import bringBookPage from 'pages/bringBookPage';
 import editingPage from 'pages/editingPage';
+import titlePage from 'pages/titlePage';
 
 
 export const privateRoutes = [
@@ -11,4 +12,8 @@ export const privateRoutes = [
 	{ path: '/students/:id', component: studentPage, exact: true },
 	{ path: '/bringBook/:id', component: bringBookPage, exact: true },
 	{ path: '/editing/', component: editingPage, exact: true }
+]
+
+export const publicRoutes = [
+	{ path: '/titlePage', component: titlePage, exact: true }
 ]
