@@ -3,7 +3,7 @@ from .views import *
 
 from rest_framework import routers
 
-urlpatterns = [path('password/', autentification)]
+urlpatterns = [path('authorization/', PasswordCheck)]
 
 router = routers.SimpleRouter()
 router.register(r'students', StudentViewSet)
