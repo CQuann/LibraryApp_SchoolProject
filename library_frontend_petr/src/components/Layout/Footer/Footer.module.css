@@ -1,6 +1,6 @@
 .footer {
 	display: grid;
-	background-color: var(--primary-color);
+	background: linear-gradient(to bottom, rgb(34, 119, 255), rgb(20, 59, 255));
 	color: rgb(59, 59, 59);
 	padding: 25px 30px;
 	gap: 10px 40px;
@@ -8,22 +8,11 @@
 	line-height: 20px;
 	min-height: 75px;
 	grid-template-columns: 1fr auto auto;
-	grid-template-areas:
-		"protect asign confed";
-}
-
-.footer a:hover {
-	color: #ebebeb6a;
-	transition: 0.3s;
 }
 
 @media (max-width: 1000px) {
 	.footer {
 		grid-template-columns: 1fr;
-		grid-template-areas:
-			"protect"
-			"asign"
-			"confed";
 		text-align: center;
 	}
 }

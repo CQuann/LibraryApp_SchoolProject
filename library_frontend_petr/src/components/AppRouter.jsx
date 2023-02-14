@@ -6,7 +6,6 @@ import MyLoader from './UI/MyLoader/MyLoader';
 
 export default function AppRouter() {
 	const { isAuth, isLoading } = useContext(AuthContext)
-	console.log(isAuth)
 
 	if (isLoading) {
 		return <MyLoader />

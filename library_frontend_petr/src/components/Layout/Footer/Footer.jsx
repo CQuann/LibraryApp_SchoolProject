@@ -8,12 +8,12 @@ export const Footer = ({ className, ...props }) => {
 			<div className={styles.protect}>
 				LibraryApp © 2022 - {format(new Date(), 'yyyy')} Все права защищены
 			</div>
-			<a href='/#' target='_blank' className={styles.asign}>
-				Пользовательское соглашение
-			</a>
-			<a href='/#' target='_blank' className={styles.confed}>
-				Политика конфиденциальности
-			</a>
+			<div className={styles.asign}>
+				Степанов Пётр
+			</div>
+			<div className={styles.confed}>
+				Крылов Григорий
+			</div>
 		</footer>
 	);
 };

@@ -140,43 +140,47 @@ export default function BringBook() {
 				? <MyLoader />
 				: <div className={cn.container} >
 					<h1 className={cn.mainHeader}> Ученик {student.surname} {student.name} {student.patronymic}: </h1>
-					<h1 className={cn.header} >Фильтр по классам</h1>
-					<select value={classFilter} onChange={changeClassFilter} className={cn.classFilter} >
-						{classesFilter.map(classOption =>
-							<option>
-								{classOption}
+					<div style={{ boxShadow: "5px 5px 10px 5px rgba(0, 0, 0, 0.5)", padding: 40, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+						<h1 className={cn.header} >Фильтр по классам</h1>
+						<select value={classFilter} onChange={changeClassFilter} className={cn.classFilter} >
+							{classesFilter.map(classOption =>
+								<option>
+									{classOption}
+								</option>
+							)}
+							<option value={""}>
+								Сбросить фильтр
 							</option>
-						)}
-						<option value={""}>
-							Сбросить фильтр
-						</option>
-					</select>
-					<h1 className={cn.header} >Фильтр по авторам</h1>
-					<select value={authorFilter} onChange={changeAuthorsFilter} className={cn.authorFilter} >
-						{authors.map(author =>
-							<option>
-								{author.name}
+						</select>
+						<h1 className={cn.header} >Фильтр по авторам</h1>
+						<select value={authorFilter} onChange={changeAuthorsFilter} className={cn.authorFilter} >
+							{authors.map(author =>
+								<option>
+									{author.name}
+								</option>
+							)}
+							<option value={""}>
+								Сбросить фильтр
 							</option>
-						)}
-						<option value={""}>
-							Сбросить фильтр
-						</option>
-					</select>
-					<h1 className={cn.header} >Поиск</h1>
-					<div className={cn.search}>
-						<MyInput
-							style={{ marginTop: -5, marginLeft: -15 }}
-							value={query}
-							onChange={(event) => setQuery(event.target.value)}
-						/>
+						</select>
+						<h1 className={cn.header} >Поиск</h1>
+						<div className={cn.search}>
+							<MyInput
+								style={{ marginTop: -5, marginLeft: -15 }}
+								value={query}
+								placeholder='Найти книгу'
+								onChange={(event) => setQuery(event.target.value)}
+							/>
 
-						<div style={{ marginLeft: 40, marginBottom: 10 }} >
-							<button onClick={() =>
-								// @ts-ignore
-								getBooks()} className={cn.btnSearch} >
-								Найти
-							</button>
+							<div style={{ marginLeft: 40, marginBottom: 10 }} >
+								<button onClick={() =>
+									// @ts-ignore
+									getBooks()} className={cn.btnSearch} >
+									Найти
+								</button>
+							</div>
 						</div>
+
 
 					</div>
 

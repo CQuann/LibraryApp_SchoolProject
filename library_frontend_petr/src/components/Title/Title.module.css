@@ -2,27 +2,85 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	text-align: center;
-	font-size: 90px;
-	margin: 80px 0;
+	font-size: 110px;
+	margin: 100px 0;
 }
 
 .description {
 	text-align: center;
-	font-size: 30px;
-	margin-bottom: 120px;
+	font-size: 40px;
+	margin-bottom: 180px;
+	font-weight: 300;
 }
 
 .signIn {
-	background-color: rgb(85, 85, 85);
+	background-color: rgba(85, 85, 85, 0.7);
 	height: 60vh;
 	padding: 70px;
+
 }
 
 .headerSignIn {
-	font-size: 40px;
-	color: rgb(178, 178, 178);
+	font-size: 55px;
+	color: rgb(214, 214, 214);
 	text-align: center;
-	font-weight: bold;
 	text-transform: uppercase;
+	margin-bottom: 160px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.inputLogin {
+	width: 40vw;
+	height: 5vh;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+	background: rgb(214, 214, 214);
+	border: 0px;
+}
+
+.inputPassword {
+	width: 40vw;
+	height: 5vh;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
 	margin-bottom: 40px;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+	background: rgb(214, 214, 214);
+	border: 0px;
+}
+
+.inputLogin:focus {
+	box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.7);
+}
+
+.inputPassword:focus {
+	box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.7);
+}
+
+.btnSignIn {
+	color: rgb(214, 214, 214);
+	background: rgba(255, 255, 255, 0);
+	width: 10vw;
+	height: 4vh;
+	font-size: 30px;
+	border-radius: 20px;
+	font-weight: bold;
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+	transition: all 0.3s;
+}
+
+.btnSignIn:hover {
+	box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.7);
+	background: rgba(255, 255, 255, 0.1);
 }

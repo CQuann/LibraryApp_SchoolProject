@@ -1,20 +1,50 @@
 .head {
 	display: grid;
-	background-color: var(--primary-color);
-	color: rgb(59, 59, 59);
-	padding: 25px 30px;
+	background: linear-gradient(to top, rgb(34, 119, 255), rgb(20, 59, 255));
+	padding: 35px;
 	gap: 10px 50px;
 	font-size: 20px;
 	line-height: 20px;
+	align-items: center;
 	min-height: 75px;
-	grid-template-columns: auto 1fr auto auto auto;
+	grid-template-columns: auto 1fr auto auto auto auto;
 	padding-right: 40px;
 }
 
 .title {
 	cursor: pointer;
 	background-color: rgba(255, 255, 255, 0);
-	font-size: 40px;
+	font-size: 35px;
+	line-height: 22px;
+	font-weight: bold;
+	text-transform: uppercase;
 	text-decoration: none;
 	margin-left: -5px;
+}
+
+.link {
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+.link:hover {
+	color: rgb(86, 86, 86);
+}
+
+.signOut {
+	background-color: rgb(156, 156, 156);
+	font-size: 18px;
+	padding: 10px 20px;
+	border-radius: 50px;
+	margin: 5px;
+	text-align: center;
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+	transition: all 0.5s;
+	letter-spacing: 2px;
+	font-weight: bold;
+}
+
+.signOut:hover {
+	box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.7);
+	background: linear-gradient(to top left, rgba(255, 104, 45, 0.5), rgba(66, 49, 255, 0.5));
 }

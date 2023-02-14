@@ -1,6 +1,7 @@
 import TextBooksService from 'API/TextBooksService'
 import BookItemSec from 'components/BookItemSec/BookItemSec'
 import MyButton from 'components/UI/MyButton/MyButton'
+import MyLoader from 'components/UI/MyLoader/MyLoader'
 import { useFetching } from 'hooks/useFetching'
 import React, { useEffect, useState } from 'react'
 import cn from './EditingBooks.module.css'
@@ -70,28 +71,38 @@ export default function EditingBooks() {
 	return (
 		<div>
 			{
-				Array.from(books).map(b =>
-					<div className={cn.wrapper}>
-						<div className={cn.bookWrapper}>
-							<BookItemSec book={b} />
-						</div>
-						<div className={cn.amountWrapper}>
-							<div className={cn.amount} >
-								Количество учебника "{b.name}": {b.amount}
-							</div>
-							<div className={cn.btnWrapper} >
-								<button className={cn.btns} onClick={() => plusBook(b.id)} >
-									+
-								</button>
-								<button className={cn.btns} onClick={() => minusBook(b.id)} >
-									-
-								</button>
-							</div>
+				isBooksLoading || isAmountPatching
+					?
+					<MyLoader />
+					:
+					<div>
+						{
+							Array.from(books).map(b =>
+								<div className={cn.wrapper}>
+									<div className={cn.bookWrapper}>
+										<BookItemSec book={b} />
+									</div>
+									<div className={cn.amountWrapper}>
+										<div className={cn.amount} >
+											Количество учебника "{b.name}": {b.amount}
+										</div>
+										<div className={cn.btnWrapper} >
+											<button className={cn.btns} onClick={() => plusBook(b.id)} >
+												+
+											</button>
+											<button className={cn.btns} onClick={() => minusBook(b.id)} >
+												-
+											</button>
+										</div>
 
-						</div>
+									</div>
+								</div>
+							)
+						}
 					</div>
-				)
 			}
+
+
 		</div>
 	)
 }

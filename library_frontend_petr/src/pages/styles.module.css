@@ -4,6 +4,9 @@ hr {
 	border: 1px solid #fff;
 }
 
-h1.container {
-	margin: 10px;
+.header {
+	margin: 20px;
+	font-size: 50px;
+	font-weight: bold;
+	text-transform: uppercase;
 }
