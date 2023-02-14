@@ -31,7 +31,7 @@ const classes = () => {
 				:
 				<div className={cl.container}>
 					<h1
-						style={{ margin: 20 }}
+						style={{ margin: 20, fontSize: 50 }}
 					>
 						Классы:
 					</h1>

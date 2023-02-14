@@ -1,9 +1,10 @@
+import EditingBooks from 'components/EditingBooks/EditingBooks'
 import React from 'react'
 
 export default function editingPage() {
 	return (
 		<div>
-			it's editing Page
+			<EditingBooks />
 		</div>
 	)
 }

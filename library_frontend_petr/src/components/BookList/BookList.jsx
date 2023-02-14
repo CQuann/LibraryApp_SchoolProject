@@ -1,6 +1,4 @@
 import StudentsService from 'API/StudentsService'
-import MyModal from 'components/UI/modal/MyModal'
-import MyButton from 'components/UI/MyButton/MyButton'
 import MyLoader from 'components/UI/MyLoader/MyLoader'
 import { useFetching } from 'hooks/useFetching'
 import React, { useEffect, useState } from 'react'
@@ -61,7 +59,11 @@ export default function BookList({ studentId }) {
 
 	const [deleteBook, isBookDeletind, BookDeletindError] = useFetching(async (id, updatedStudent) => {
 		const response = await StudentsService.patchStudent(id, updatedStudent)
+<<<<<<< HEAD
                 console.log(response)
+=======
+		setStudent(response)
+>>>>>>> 11dd3a0496fe58bba7978200bdcb5985ac5bd847
 	})
 	const [getStudent, isStudentLoading, StudentLoadingError] = useFetching(async (StudentId) => {
 		const response = await StudentsService.getStudentById(StudentId)
@@ -79,8 +81,10 @@ export default function BookList({ studentId }) {
 				}
 			})
 			student.text_books = a
+			console.log(student)
 			// @ts-ignore
 			deleteBook(student.id, student)
+			console.log(BookDeletindError)
 		}
 		else {
 			return
@@ -98,16 +102,21 @@ export default function BookList({ studentId }) {
 			{isBookDeletind || isStudentLoading
 				? <MyLoader />
 				: <div className={styles.container} >
-					<h1 className={styles.header} >{student.surname} {student.name} {student.patronymic} ({student.class_number}-{student.class_index})</h1>
-					<MyButton className={styles.btn0} onClick={() => router.push(`/bringBook/${student.id}`)}>
+					<h1 className={styles.header} >{student.surname} {student.name} {student.patronymic} ({student.class_number}-{student.class_index}):</h1>
+					<button className={styles.btn0} onClick={() => router.push(`/bringBook/${student.id}`)}>
 						Добавить книгу
+<<<<<<< HEAD
 					</MyButton>
 					{studentBooks.map(book =>
+=======
+					</button>
+					{StudentBooks.map(book =>
+>>>>>>> 11dd3a0496fe58bba7978200bdcb5985ac5bd847
 						<div className={styles.book} >
 							<BookItemSec book={book} />
-							<MyButton className={styles.btn1} onClick={() => delBook(book.id)} >
+							<button className={styles.btn1} onClick={() => delBook(book.id)} >
 								{student.name} принес "{book.name}"
-							</MyButton>
+							</button>
 						</div>
 					)}
 				</div>

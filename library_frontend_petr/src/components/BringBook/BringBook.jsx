@@ -2,7 +2,6 @@ import AuthorsService from 'API/AuthorsService'
 import StudentsService from 'API/StudentsService'
 import TextBooksService from 'API/TextBooksService'
 import BookItemSec from 'components/BookItemSec/BookItemSec'
-import MyButton from 'components/UI/MyButton/MyButton'
 import MyInput from 'components/UI/MyInput/MyInput'
 import MyLoader from 'components/UI/MyLoader/MyLoader'
 import { useFetching } from 'hooks/useFetching'
@@ -137,9 +136,10 @@ export default function BringBook() {
 
 	return (
 		<div className={cn.wrapper}>
-			{isAuthorsLoading || isBooksLoading
+			{isAuthorsLoading || isBooksLoading || isStudentBooksLoading || isBookBringing
 				? <MyLoader />
 				: <div className={cn.container} >
+					<h1 className={cn.mainHeader}> Ученик {student.surname} {student.name} {student.patronymic}: </h1>
 					<h1 className={cn.header} >Фильтр по классам</h1>
 					<select value={classFilter} onChange={changeClassFilter} className={cn.classFilter} >
 						{classesFilter.map(classOption =>
@@ -169,12 +169,13 @@ export default function BringBook() {
 							value={query}
 							onChange={(event) => setQuery(event.target.value)}
 						/>
+
 						<div style={{ marginLeft: 40, marginBottom: 10 }} >
-							<MyButton onClick={() =>
+							<button onClick={() =>
 								// @ts-ignore
-								getBooks()} >
+								getBooks()} className={cn.btnSearch} >
 								Найти
-							</MyButton>
+							</button>
 						</div>
 
 					</div>
@@ -183,9 +184,9 @@ export default function BringBook() {
 						{books.map(b =>
 							<div className={cn.bookContainer} >
 								<BookItemSec book={b} />
-								<MyButton onClick={() => addBook(b)}  >
+								<button onClick={() => addBook(b)} className={cn.btns} >
 									Добавить книгу
-								</MyButton>
+								</button>
 							</div>
 						)}
 					</div>

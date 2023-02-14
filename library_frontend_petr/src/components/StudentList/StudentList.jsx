@@ -29,7 +29,7 @@ export default function StudentList() {
 			{isStudentsLoading
 				? <MyLoader />
 				: <div className={styles.container} >
-					<h1 className={styles.header} >Класс {Array.from(params.id).slice(0, -1).join('')} - {Array.from(params.id).slice(-1)}</h1>
+					<h1 className={styles.header} >Класс {Array.from(params.id).slice(0, -1).join('')} - {Array.from(params.id).slice(-1)}:</h1>
 					<div className={styles.StudentList} >
 						{students.map(student =>
 							<div>

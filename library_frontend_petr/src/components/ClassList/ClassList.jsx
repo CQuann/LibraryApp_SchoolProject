@@ -4,8 +4,6 @@ import classes from './ClassList.module.css'
 
 export default function ClassList(arr, main_class) {
 
-	// console.log(arr.number_of_parallels, arr.main_class)
-
 	return (
 		<div className={classes.classContainer}>
 			{arr.number_of_parallels.map(cl =>
