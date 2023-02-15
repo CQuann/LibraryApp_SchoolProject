@@ -41,12 +41,6 @@ export default function BookList({ studentId }) {
 
 	const [deleteBook, isBookDeletind, BookDeletindError] = useFetching(async (id, updatedStudent) => {
 		const response = await StudentsService.patchStudent(id, updatedStudent)
-<<<<<<< HEAD
-
-                console.log(response)
-
-=======
->>>>>>> 93882288812efa65dfc270fbabcdd0eea836d26b
 		setStudent(response)
 	})
 	const [getStudent, isStudentLoading, StudentLoadingError] = useFetching(async (StudentId) => {
@@ -86,8 +80,7 @@ export default function BookList({ studentId }) {
 					<button className={styles.btn0} onClick={() => router.push(`/bringBook/${student.id}`)}>
 						Добавить книгу
 					</button>
-<<<<<<< HEAD
-					{studentBooks.map(book =>
+					{student.text_books.map(book =>
 						<div className={styles.book} >
 							<BookItemSec book={book} />
 							<button className={styles.btn1} onClick={() => delBook(book.id)} >
@@ -95,7 +88,6 @@ export default function BookList({ studentId }) {
 							</button>
 						</div>
 					)}
-=======
 					<div>
 						{
 							student.text_books.map(b =>
@@ -108,7 +100,6 @@ export default function BookList({ studentId }) {
 							)
 						}
 					</div>
->>>>>>> 93882288812efa65dfc270fbabcdd0eea836d26b
 				</div>
 			}
 		</div>
