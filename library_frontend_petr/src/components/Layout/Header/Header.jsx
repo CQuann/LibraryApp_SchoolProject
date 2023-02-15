@@ -2,6 +2,7 @@ import { AuthContext } from '../../../context';
 import React, { useContext } from 'react';
 // import { useHistory } from 'react-router-dom';
 import styles from './Header.module.css';
+import { Link } from 'react-router-dom';
 
 
 export const Header = ({ ...props }) => {
@@ -17,38 +18,37 @@ export const Header = ({ ...props }) => {
 		isAuth
 			?
 			<header {...props} className={styles.head} >
-				<a href='/classes' target='_self' className={styles.title}>
+				<Link to='/' className={styles.title}>
 					Library App
-				</a>
+				</Link>
 				<div></div>
-				<a href='/editing/' target='_self' className={styles.link}>
+				<Link to='/editing' className={styles.link}>
 					Редактирование
-				</a>
-				<a href='/help/' target='_self' className={styles.link}>
+				</Link>
+				<Link to='/help' className={styles.link}>
 					Помощь
-				</a>
-				<a href='/description/' target='_self' className={styles.link}>
+				</Link>
+				<Link to='/about' className={styles.link}>
 					Описание
-				</a>
+				</Link>
 				<button className={styles.signOut} onClick={logout} >
 					Выйти
 				</button>
 			</header>
 			:
 			<header {...props} className={styles.head} >
-				<a href='/classes' target='_self' className={styles.title}>
+				<Link to='/' className={styles.title}>
 					Library App
-				</a>
+				</Link>
 				<div></div>
-				<a href='/editing/' target='_self' className={styles.link}>
-					Редактирование
-				</a>
-				<a href='/help/' target='_self' className={styles.link}>
+				<div></div>
+				<div></div>
+				<Link to='/help' className={styles.link}>
 					Помощь
-				</a>
-				<a href='/description/' target='_self' className={styles.link}>
+				</Link>
+				<Link to='/about' className={styles.link}>
 					Описание
-				</a>
+				</Link>
 			</header>
 	);
 };

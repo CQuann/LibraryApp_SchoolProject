@@ -16,7 +16,7 @@
 :root {
 	/* --primary-color: rgb(0, 162, 255); */
 	--primary-color: linear-gradient(to top left, rgba(83, 78, 217, 0.8), rgba(31, 26, 178, 0.8));
-	--primary-color2: linear-gradient(to bottom, rgba(150, 148, 206, 0.8), rgba(75, 71, 184, 0.8));
+	--primary-color2: linear-gradient(to bottom, rgba(105, 102, 195, 0.8), rgba(87, 83, 220, 0.8));
 	--buttons-color: rgba(125, 125, 125, 0.7);
 	--buttons-color2: linear-gradient(to top right, rgba(255, 72, 0, 0.5), rgba(255, 213, 0, 0.5));
 	/* primary-color но прозрачнее */

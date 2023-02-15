@@ -88,18 +88,6 @@ export default function BookList({ studentId }) {
 							</button>
 						</div>
 					)}
-					<div>
-						{
-							student.text_books.map(b =>
-								<div className={styles.book} >
-									<BookItemSec book={b} />
-									<button className={styles.btn1} onClick={() => delBook(b.id)} >
-										{student.name} принес "{b.name}"
-									</button>
-								</div>
-							)
-						}
-					</div>
 				</div>
 			}
 		</div>
