@@ -35,7 +35,7 @@ export default function AppRouter() {
 						key={route.path}
 					/>
 				)}
-				<Redirect to='/titlePage' />
+				<Redirect to='/title'/>
 			</Switch>
 	)
 }
