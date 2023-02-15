@@ -3,6 +3,7 @@ import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from 'context';
+import { HashRouter } from 'react-router-dom';
 
 const Layout = ({ children }) => {
 	const [isAuth, setIsAuth] = useState(false);
@@ -20,17 +21,20 @@ const Layout = ({ children }) => {
 			setIsAuth,
 			isLoading
 		}}>
-			<div className={styles.wrapper}>
-				<Header className={styles.header} />
-				<div className={styles.bodyContainer}>
-					<div></div>
-					<div className={styles.body}>
-						{children}
+			<HashRouter>
+				<div className={styles.wrapper}>
+					<Header className={styles.header} />
+					<div className={styles.bodyContainer}>
+						<div></div>
+						<div className={styles.body}>
+							{children}
+						</div>
+						<div></div>
 					</div>
-					<div></div>
+					<Footer className={styles.footer} />
 				</div>
-				<Footer className={styles.footer} />
-			</div>
+			</HashRouter>
+
 		</AuthContext.Provider>
 	)
 }
