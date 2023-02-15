@@ -17,7 +17,7 @@ export const Header = ({ ...props }) => {
 		isAuth
 			?
 			<header {...props} className={styles.head} >
-				<a href='/classes' target='_self' className={styles.title}>
+				<a href='/' target='_self' className={styles.title}>
 					Library App
 				</a>
 				<div></div>
@@ -36,13 +36,12 @@ export const Header = ({ ...props }) => {
 			</header>
 			:
 			<header {...props} className={styles.head} >
-				<a href='/classes' target='_self' className={styles.title}>
+				<a href='/' target='_self' className={styles.title}>
 					Library App
 				</a>
 				<div></div>
-				<a href='/editing/' target='_self' className={styles.link}>
-					Редактирование
-				</a>
+				<div></div>
+				<div></div>
 				<a href='/help/' target='_self' className={styles.link}>
 					Помощь
 				</a>

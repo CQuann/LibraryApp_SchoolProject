@@ -32,7 +32,7 @@
 }
 
 .signOut {
-	background-color: rgb(156, 156, 156);
+	background-color: rgba(0, 0, 0, 0.2);
 	font-size: 18px;
 	padding: 10px 20px;
 	border-radius: 50px;
