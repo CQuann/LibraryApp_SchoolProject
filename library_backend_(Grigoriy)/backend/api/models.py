@@ -27,7 +27,7 @@ class TextBook(models.Model):
     name = models.CharField('Название', max_length=100)
     class_number = models.CharField('В каком классе выдаются', max_length=10)
     authors = models.ManyToManyField(Author)
-    release_year = models.PositiveIntegerField(blank=True, default=None)
+    release_year = models.PositiveIntegerField('Год выпуска', blank=True, default=None)
     amount = models.PositiveIntegerField('Количество учебников', default=0)
 
     def __str__(self):
